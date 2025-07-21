@@ -4,7 +4,7 @@ export default function JsonViewer({ jsonData }) {
   if (!jsonData) return null;
 
   return (
-    <div className="mt-4 bg-gray-900 rounded-md p-4 text-sm overflow-auto font-mono max-h-[400px] border border-gray-300">
+    <div className="mt-4 backdrop-blur-xl border-0 shadow-2xl bg-white/10 rounded-md p-4 text-sm overflow-auto font-mono max-h-[400px]">
       <RenderJson data={jsonData} />
     </div>
   );
@@ -26,19 +26,19 @@ function RenderJson({ data, indent = 0 }) {
 
   return (
     <div style={{ marginLeft: indent }}>
-      <span>{isArray ? "[" : "{"}</span>
+      <span className="text-gray-200">{isArray ? "[" : "{"}</span>
       {entries.map(([key, value], index) => (
         <div key={index} className="ml-4">
           {!isArray && (
             <span className="text-[#9CDCFE]">"{key}"</span>
           )}
-          {!isArray && <span>: </span>}
+          {!isArray && <span className="text-gray-200">: </span>}
           <RenderJson data={value} indent={indent + 20} />
-          {index < entries.length - 1 ? <span>,</span> : null}
+          {index < entries.length - 1 ? <span className="text-gray-200">,</span> : null}
         </div>
       ))}
       <div>
-        <span>{isArray ? "]" : "}"}</span>
+        <span className="text-gray-200">{isArray ? "]" : "}"}</span>
       </div>
     </div>
   );

@@ -17,11 +17,11 @@ export default function ApiInputForm({ onSubmit, loading }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 mb-8 max-w-3xl mx-auto"
+      className="flex flex-col gap-4 mt-[42px] max-w-3xl mx-auto"
     >
       <input
         type="url"
-        className="w-full px-4 py-3 border border-gray-300 focus:border-0 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="w-full px-4 py-3 rounded-md backdrop-blur-sm focus:outline-none shadow-lg bg-white/10 text-white border-2  border-transparent hover:border-gray-400/50 placeholder:text-gray-400"
         placeholder="Enter API endpoint (e.g., https://api.example.com)"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
@@ -29,7 +29,7 @@ export default function ApiInputForm({ onSubmit, loading }) {
       />
 
       <select
-        className="px-4 py-3 border border-gray-300 focus:outline-none focus:border-0 rounded-md w-full focus:ring-2 focus:ring-blue-400"
+        className="w-full px-4 py-3 rounded-md backdrop-blur-sm focus:outline-none shadow-lg bg-white/10 text-white border-2  border-transparent hover:border-gray-400/50"
         value={method}
         onChange={(e) => setMethod(e.target.value)}
       >
@@ -44,7 +44,7 @@ export default function ApiInputForm({ onSubmit, loading }) {
         <textarea
           rows={4}
           placeholder="Enter JSON body..."
-          className="w-full px-4 py-3 border border-gray-300 rounded-md font-mono focus:ring-2 focus:ring-blue-400"
+          className="w-full px-4 py-3 border border-gray-300 rounded-md font-mono focus:ring-2 focus:ring-blue-400 text-gray-400"
           value={body}
           onChange={(e) => setBody(e.target.value)}
         />
@@ -52,7 +52,11 @@ export default function ApiInputForm({ onSubmit, loading }) {
 
       <button
         type="submit"
-        className="bg-blue-600 text-white font-semibold py-3 rounded-md hover:bg-blue-700 transition disabled:opacity-60"
+        className="-full h-12 text-lg font-semibold transition-all duration-300
+            bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-800
+          shadow-lg hover:shadow-xl hover:shadow-gray-500/25
+            border-2 border-transparent hover:border-gray-400/50
+            text-white relative overflow-hidden"
         disabled={loading}
       >
         {loading ? "Fetching..." : `${method} Request`}
