@@ -11,35 +11,51 @@ export default function JsonViewer({ jsonData }) {
 }
 
 function RenderJson({ data, indent = 0 }) {
-  if (data === null) return <div style={{ marginLeft: indent }}>null</div>;
+  if (data === null) {
+    return <span className="text-[#cc8f77]">null</span>;
+  }
 
   if (typeof data !== "object") {
-    return (
-      <div style={{ marginLeft: indent }}>
-        <span className="text-[#cc8f77]">{JSON.stringify(data)}</span>
-      </div>
-    );
+    return <span className="text-[#cc8f77]">{JSON.stringify(data)}</span>;
   }
 
   const isArray = Array.isArray(data);
   const entries = Object.entries(data);
+  const pad = (spaces) => "\u00A0".repeat(spaces); // non-breaking space
 
   return (
-    <div style={{ marginLeft: indent }}>
+    <div>
       <span className="text-gray-200">{isArray ? "[" : "{"}</span>
       {entries.map(([key, value], index) => (
-        <div key={index} className="ml-4">
+        <div key={index} style={{ marginLeft: indent }} className="flex flex-wrap">
           {!isArray && (
-            <span className="text-[#9CDCFE]">"{key}"</span>
+            <>
+              <span className="text-[#9CDCFE]">"{key}"</span>
+              <span className="text-gray-200">: </span>
+            </>
           )}
-          {!isArray && <span className="text-gray-200">: </span>}
-          <RenderJson data={value} indent={indent + 20} />
-          {index < entries.length - 1 ? <span className="text-gray-200">,</span> : null}
+
+          {typeof value === "object" && value !== null ? (
+            <RenderJson data={value} indent={indent + 20} />
+          ) : (
+            <span className="text-[#cc8f77]">{JSON.stringify(value)}</span>
+          )}
+
+          {index < entries.length - 1 && <span className="text-gray-200">,</span>}
         </div>
       ))}
-      <div>
+      <div style={{ marginLeft: indent }}>
         <span className="text-gray-200">{isArray ? "]" : "}"}</span>
       </div>
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
