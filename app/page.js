@@ -6,7 +6,6 @@ import ApiInputForm from "@/components/common/ApiInputForm";
 import JsonViewer from "@/components/common/JsonViewer";
 import { FiZap } from "react-icons/fi";
 
-
 export default function HomePage() {
   const [jsonData, setJsonData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -49,9 +48,15 @@ export default function HomePage() {
   return (
     <div className="w-full max-w-5xl p-6 mt-6 mx-auto">
       <h1 className="flex items-center justify-center gap-3 text-4xl md:text-5xl font-extrabold text-center mt-2 tracking-tight bg-clip-text text-gray-100">
-       <span className="p-3 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg"> <FiZap className="text-white text-2xl"/> </span> Universal JSON Formatter
+        <span className="p-3 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg">
+          <FiZap className="text-white text-2xl" />
+        </span>{" "}
+        Universal JSON Formatter
       </h1>
-      <p className="text-gray-400 text-center mt-2">Professional API testing and JSON formatting tool</p>
+      <p className="text-gray-400 text-center mt-2">
+        Professional API testing and JSON formatting tool
+      </p>
+
       <ApiInputForm onSubmit={handleFetchJson} loading={loading} />
 
       {error && (
@@ -60,7 +65,15 @@ export default function HomePage() {
         </div>
       )}
 
-      <JsonViewer jsonData={jsonData} />
+      <JsonViewer jsonData={jsonData} loading={loading} />
     </div>
   );
 }
+
+
+
+
+
+
+
+
