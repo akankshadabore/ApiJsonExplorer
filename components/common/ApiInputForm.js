@@ -100,7 +100,7 @@ export default function ApiInputForm({ onSubmit, loading }) {
 
         <input
           type="url"
-          className="flex-1 px-4 py-3 rounded-md backdrop-blur-sm focus:outline-none shadow-lg bg-white/10 text-white border-2 border-transparent hover:border-gray-400/50 focus:border-blue-400/50 placeholder:text-gray-400"
+          className="flex-1 px-4 py-3 rounded-md backdrop-blur-sm focus:outline-none shadow-lg bg-white/10 text-white border-2 border-transparent hover:border-gray-400/50  placeholder:text-gray-400"
           placeholder="Enter API endpoint (e.g., https://api.example.com/data)"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
@@ -109,7 +109,7 @@ export default function ApiInputForm({ onSubmit, loading }) {
       </div>
 
       {/* Headers Section */}
-      <div className="bg-white/5 rounded-md p-4 border border-gray-400/20">
+      <div className="bg-white/10 rounded-md p-4 border border-gray-400/20 hover:border-gray-400/70">
         <button
           type="button"
           onClick={() => setShowHeaders(!showHeaders)}
