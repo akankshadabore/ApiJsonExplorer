@@ -13,10 +13,6 @@ export default function HomePage() {
   const [responseInfo, setResponseInfo] = useState(null);
   const router = useRouter();
 
-  useEffect(() => {
-    const isLoggedIn = localStorage?.getItem("isLoggedIn");
-    if (isLoggedIn !== "true") router.push("/login");
-  }, [router]);
 
   const handleFetchJson = async ({ url, method, body, headers }) => {
     setLoading(true);
@@ -26,7 +22,6 @@ export default function HomePage() {
     const startTime = Date.now();
     
     try {
-      // Parse headers
       const parsedHeaders = {
         "Content-Type": "application/json",
         ...headers
@@ -37,10 +32,8 @@ export default function HomePage() {
         headers: parsedHeaders,
       };
 
-      // Add body for non-GET requests
       if (method !== "GET" && body.trim()) {
         try {
-          // Validate and format JSON body
           const parsedBody = JSON.parse(body);
           options.body = JSON.stringify(parsedBody);
         } catch (jsonError) {
@@ -52,7 +45,6 @@ export default function HomePage() {
       const endTime = Date.now();
       const responseTime = endTime - startTime;
 
-      // Get response info
       const contentType = res.headers.get("content-type");
       const contentLength = res.headers.get("content-length");
       
@@ -69,7 +61,6 @@ export default function HomePage() {
         throw new Error(`HTTP ${res.status}: ${res.statusText}`);
       }
 
-      // Handle different content types
       let data;
       if (contentType && contentType.includes("application/json")) {
         data = await res.json();

@@ -11,7 +11,6 @@ export default function ApiInputForm({ onSubmit, loading }) {
   const [showHeaders, setShowHeaders] = useState(false);
   const [showBody, setShowBody] = useState(false);
 
-  // Common headers presets
   const commonHeaders = [
     { name: "Authorization", value: "Bearer " },
     { name: "Content-Type", value: "application/json" },
@@ -23,7 +22,6 @@ export default function ApiInputForm({ onSubmit, loading }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (url.trim()) {
-      // Convert headers array to object
       const headersObj = {};
       headers.forEach(({ key, value }) => {
         if (key.trim() && value.trim()) {
@@ -69,7 +67,6 @@ export default function ApiInputForm({ onSubmit, loading }) {
       const parsed = JSON.parse(body);
       setBody(JSON.stringify(parsed, null, 2));
     } catch (error) {
-      // Invalid JSON, do nothing
     }
   };
 
@@ -78,7 +75,6 @@ export default function ApiInputForm({ onSubmit, loading }) {
       onSubmit={handleSubmit}
       className="flex flex-col gap-4 mt-[42px] max-w-4xl mx-auto"
     >
-      {/* URL and Method */}
       <div className="flex gap-2">
         <select
           className="px-4 py-3 rounded-md backdrop-blur-sm focus:outline-none shadow-lg bg-white/10 text-white border-2 border-transparent hover:border-gray-400/50 min-w-[120px]"
@@ -107,7 +103,6 @@ export default function ApiInputForm({ onSubmit, loading }) {
         />
       </div>
 
-      {/* Headers Section */}
       <div className="bg-white/10 rounded-md p-4 border border-gray-400/20 hover:border-gray-400/70">
         <button
           type="button"
@@ -120,7 +115,6 @@ export default function ApiInputForm({ onSubmit, loading }) {
 
         {showHeaders && (
           <div className="space-y-3">
-            {/* Common Headers */}
             <div className="mb-4">
               <p className="text-gray-400 text-sm mb-2">Quick Add:</p>
               <div className="flex flex-wrap gap-2">
@@ -137,7 +131,6 @@ export default function ApiInputForm({ onSubmit, loading }) {
               </div>
             </div>
 
-            {/* Custom Headers */}
             {headers.map((header, index) => (
               <div key={index} className="flex gap-2 items-center">
                 <input
@@ -176,7 +169,6 @@ export default function ApiInputForm({ onSubmit, loading }) {
         )}
       </div>
 
-      {/* Request Body Section */}
       {(method !== "GET" && method !== "HEAD") && (
         <div className="bg-white/5 rounded-md p-4 border border-gray-400/20">
           <button
@@ -212,8 +204,7 @@ export default function ApiInputForm({ onSubmit, loading }) {
         </div>
       )}
 
-      {/* Submit Button */}
-      <button
+\      <button
         type="submit"
         className="w-full h-12 text-lg font-semibold transition-all duration-300
             bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-500 hover:to-blue-700

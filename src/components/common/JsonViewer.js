@@ -6,7 +6,7 @@ import { FiCopy, FiEye, FiEyeOff } from "react-icons/fi";
 export default function JsonViewer({ jsonData, loading }) {
   const [copyStatus, setCopyStatus] = useState("");
   const [expandedPaths, setExpandedPaths] = useState(new Set());
-  const [viewMode, setViewMode] = useState("formatted"); // formatted, raw
+  const [viewMode, setViewMode] = useState("formatted"); 
 
   const copyToClipboard = async () => {
     try {
@@ -35,7 +35,6 @@ export default function JsonViewer({ jsonData, loading }) {
 
   return (
     <div className="mt-6 backdrop-blur-xl border border-gray-400/20 shadow-2xl bg-white/10 rounded-md overflow-hidden">
-      {/* Header */}
       <div className="flex items-center justify-between p-4 bg-white/5 border-b border-gray-400/20">
         <h3 className="text-white font-semibold">Response</h3>
         {jsonData && (
@@ -60,7 +59,6 @@ export default function JsonViewer({ jsonData, loading }) {
         )}
       </div>
 
-      {/* Content */}
       <div className="p-6 text-sm overflow-auto font-mono max-h-[500px] min-h-[200px]">
         {loading ? (
           <div className="flex flex-col gap-3">
